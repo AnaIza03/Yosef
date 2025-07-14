@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yosef - Exposição Bíblica</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+    :root {
+      --purple: #9376ae;
+      --cream: #f9f1e7;
+      --text-purple: #625182;
+    }
+
+    body {
+      font-family: 'Merriweather', serif;
+      background-color: var(--cream);
+      margin: 0;
+      color: var(--text-purple);
+    }
+
+    header {
+      background-color: var(--purple);
+      color: var(--cream);
+      padding: 2rem 1rem 3rem 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo-container {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-container:hover {
+      transform: scale(1.1);
+    }
+
+    .logo-svg {
+      fill: var(--cream);
+      width: 100%;
+      height: 100%;
+    }
+
+    nav {
+      margin-top: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      font-size: 1rem;
+    }
+
+    nav a {
+      color: var(--cream);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: #e1dcdc;
+      outline: none;
+    }
+
+    .main-title {
+      margin-top: 5rem;
+    }
+
+    .main-title h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin: 0 0 0.15em 0;
+      font-weight: 700;
+    }
+
+    .main-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.75em;
+    }
+
+    .main-title p {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin: 0 auto;
+      max-width: 350px;
+      line-height: 1.4;
+    }
+
+    section.content-wrapper {
+      max-width: 1100px;
+      margin: 4rem auto 5rem auto;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .grid-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 3rem;
+      align-items: center;
+    }
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+      color: var(--purple);
+    }
+
+    .text-block {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: var(--text-purple);
+      max-width: 460px;
+    }
+
+    .image-block img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 6px 10px rgba(147, 118, 174, 0.3);
+    }
+
+    .composite-images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 120px);
+      gap: 1rem;
+      max-width: 440px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 10px rgba(147, 118, 174, 0.3);
+    }
+
+    .composite-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(0.98) saturate(1.1);
+    }
+
+    .composite-images img:nth-child(3) {
+      grid-column: 1 / span 2;
+      height: 150px;
+      object-fit: contain;
+      background: var(--cream);
+      padding: 8px;
+      border-top-right-radius: 12px;
+      border-top-left-radius: 12px;
+    }
+
+    .info-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 5rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .info-box {
+      border: 1.5px solid var(--purple);
+      border-radius: 12px;
+      padding: 1.75rem 2.25rem;
+      max-width: 320px;
+      background-color: var(--cream);
+      font-size: 1rem;
+      color: var(--text-purple);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      font-family: 'Merriweather', serif;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(147, 118, 174, 0.12);
+      position: relative;
+      transition: box-shadow 0.3s ease;
+    }
+    .info-box:hover {
+      box-shadow: 0 6px 20px rgba(147, 118, 174, 0.3);
+    }
+
+    .info-box svg {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 0.8rem;
+      fill: var(--purple);
+      flex-shrink: 0;
+    }
+
+    .info-box strong {
+      font-size: 1.15rem;
+      margin-bottom: 0.7rem;
+      color: var(--purple);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        gap: 1.3rem;
+        font-size: 0.875rem;
+      }
+
+      .main-title h1 {
+        font-size: 2.6rem;
+      }
+
+      .main-title h2 {
+        font-size: 1.3rem;
+      }
+
+      section.content-wrapper {
+        margin: 3rem auto 4rem auto;
+      }
+
+      .grid-pair {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .composite-images {
+        max-width: 100%;
+        grid-template-rows: repeat(3, 120px);
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .composite-images img:nth-child(3) {
+        grid-column: 1 / span 1;
+        grid-row: 3;
+        height: 120px;
+        border-radius: 0 0 12px 0;
+        padding: 4px;
+      }
+
+      .image-block img {
+        max-width: 100%;
+      }
+
+      .info-boxes {
+        flex-direction: column;
+        gap: 2.5rem;
+        margin-top: 2rem;
+      }
+
+      .info-box {
+        max-width: 100%;
+      }
+
+      .logo-container {
+        position: static;
+        margin-bottom: 1rem;
+        width: 50px;
+        height: 50px;
+      }
+
+      header {
+        padding: 1.5rem 1rem 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" aria-label="Logotipo YOSEF" class="logo-container" title="YOSEF - Logo">
+      <!-- Logo-->
+      <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img">
+        <path d="M32 3c13.255 0 23 9.06 23 20.473 0 9.45-7.69 16.54-18 19.42v2.43h-10v-2.42c-10.31-2.88-18-9.97-18-19.43 0-11.41 9.745-20.47 23-20.47zm0-3c-14.359 0-26 11.855-26 26.473 0 11.787 9.993 20.863 20 23.53v3.497h12v-3.497c10.007-2.668 20-11.743 20-23.53 0-14.618-11.641-26.473-26-26.473z"/>
+        <text x="32" y="34" fill="var(--cream)" font-family="Merriweather, serif" font-weight="700" font-size="12" text-anchor="middle" alignment-baseline="middle">YOSEF</text>
+        <path d="M29 14h6M31 9h2" stroke="var(--cream)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <nav role="navigation" aria-label="Menu principal">
+      <a href="#inicio" tabindex="0">INICIO</a>
+      <a href="#quem-somos" tabindex="0">SOBRE</a>
+      <a href="#exposicao" tabindex="0">EXPOSIÇÃO</a>
+
+    </nav>
+    <div class="main-title" id="inicio" role="banner" aria-label="Título principal e subtítulo da exposição YOSEF">
+      <h1>YOSEF</h1>
+      <h2>DO EGITO A CANAÃ</h2>
+      <p>Uma exposição bíblica apresentada pelo grupo YOSEF</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="content-wrapper" aria-label="Seção de quem somos e sobre a exposição">
+      <article class="grid-pair" id="quem-somos" aria-labelledby="quem-somos-title">
+        <div class="text-block">
+          <h3 id="quem-somos-title">QUEM SOMOS</h3>
+          <p>
+            Somos o grupo YOSEF, formândas por jovens que desejam compartilhar a Palavra de Deus de uma forma criativa e viva!
+          </p>
+        </div>
+        <div class="image-block">
+          <img src="https://placehold.co/480x320?text=Foto+do+grupo+YOSEF" alt="Fotografia de grupo do YOSEF mostrando jovens sorrindo e felizes em ambiente interno" onerror="this.onerror=null;this.src='https://placehold.co/480x320?text=Imagem+nao+disponivel';" />
+        </div>
+      </article>
+
+      <article class="grid-pair" id="exposicao" aria-labelledby="sobre-exposicao-title">
+        <div class="image-block composite-images" aria-label="Galeria de fotos da exposição YOSEF">
+          <img src="https://placehold.co/230x120?text=Grupo+reunido+na+exposição" alt="Fotografia de um grupo grande de jovens reunidos em um espaço com decoração" onerror="this.onerror=null;this.src='https://placehold.co/230x120?text=Imagem+nao+disponivel';" />
+          <img src="https://placehold.co/230x120?text=Foto+das+formandas" alt="Jovens formandas do grupo YOSEF posando para foto sorridentes" onerror="this.onerror=null;this.src='https://placehold.co/230x120?text=Imagem+nao+disponivel';" />
+          <img src="https://placehold.co/460x150?text=Miniatura+do+projeto" alt="Miniatura triangular do projeto com inscrição e itens simbólicos" onerror="this.onerror=null;this.src='https://placehold.co/460x150?text=Imagem+nao+disponivel';" />
+          <img src="https://placehold.co/230x120?text=Foto+do+grupo+com+objetos" alt="Jovens do grupo IOSF em uma sala com objetos do projeto torneados" onerror="this.onerror=null;this.src='https://placehold.co/230x120?text=Imagem+nao+disponivel';" />
+        </div>
+        <div class="text-block" style="max-width: 460px;">
+          <h3 id="sobre-exposicao-title">SOBRE A EXPOSIÇÃO</h3>
+          <p>
+            Nosso projeto busca explorar a jornada de Jose, destacando sua fé e perseverança. A exposição oferece uma experiência interativa e inspiradora da história bíblica.
+          </p>
+        </div>
+      </article>
+
+      <section class="info-boxes" aria-label="Informações adicionais da exposição">
+        <aside class="info-box" aria-labelledby="teatro-title">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" >
+            <path d="M8 17s1-2 4-2 4 2 4 2v2H8v-2zM4 4h16v3H4V4zM4 8h16v3H4V8zm2 9v2h12v-2l-2-1v-2H8v2l-2 1z"/>
+          </svg>
+          <strong id="teatro-title">Peça Teatral “Yosef: Jonal horario da fé</strong>
+          <p>Data e horário:<br />19 de julho, às 13h</p>
+        </aside>
+
+        <aside class="info-box" aria-labelledby="tendas-title">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 16h20L12 2zm0 3.414 6.242 8.586H5.758L12 5.414zM3 18h18v2H3v-2z"/>
+          </svg>
+          <strong id="tendas-title">Tendas: Canaã e Egito</strong>
+          <p>Exposição interativa</p>
+        </aside>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
+
